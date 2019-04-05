@@ -18,9 +18,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @SpringBootApplication(
         scanBasePackages = {
-            "com.app", "com.app.service", "com.app.web.controller",
-            "com.imi", "com.imi.service", "com.imi.web.controller",
-            "com.imi.web.rest", "com.imi.scheduler"
+            "com.app", "com.app.service", "com.app.web.controller"
         })
 @EnableScheduling
 @EnableWebMvc

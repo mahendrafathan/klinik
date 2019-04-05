@@ -4,25 +4,10 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
-
-    <!--    <div class="layout-footer " style="height: 50px; z-index: 99;">
-            <span class="footer-text-left" hidden="true">
-                <p:graphicImage name="images/logo-dark.png" library="avalon-layout" />
-            </span>
-            
-            <span>
-                <div style="text-align: center;">
-                    <span style="color: #777777; font-size: 16px;">#{msg.footer_copyright}</span>
-                </div>
-            </span>
-        </div>-->
-    <div class="layout-footer" style="height: 50px;">
-<!--                <span class="footer-text-left" hidden="true" style="width: 100%; text-align: center">
-                    <p:graphicImage name="images/logo-dark.png" library="avalon-layout" />
-                </span>-->
-        <span class="footer-text-right" style="width: 100%; text-align: center; margin-top: -3px;">
-            <!--<span>#{msg.footer_copyright}</span>-->
-            <span>PT. MATA AIR BOGA LESTARI</span>
-        </span>
+    
+    <div class="layout-footer">
+        <div align="center">
+            <span>#{msg.footer_copyright} | v#{msg.app_version}</span>
+        </div>
     </div>
 </ui:composition>
