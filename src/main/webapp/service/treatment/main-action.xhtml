@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="content">
+        <h:form id="idForm" prependId="false">
+            <p:growl id="idGrowl" showDetail="false"/>
+            <p:panel style="overflow: auto" id="idPanel"
+                     class="card card-w-title ui-fluid no-border" header="Buat Perawatan">
+                <p:panelGrid columns="1" columnClasses="ui-grid-col-12"
+                             style="width: 100%; text-align: right;"
+                             styleClass="ui-panelgrid-blank form-group">
+                    <p:outputLabel value="* Wajib Diisi" style="color: red"/>
+                </p:panelGrid>
+
+                <p:outputLabel value="Data dibawah ini adalah data yang benar dan dapat dipertanggungjawabkan." 
+                               style="font-style: italic;"/>
+                <p/>
+                <p/>
+                <p:panelGrid columns="3" columnClasses="ui-grid-col-4,ui-grid-col-7,ui-grid-col-1"
+                             style="width: 100%"
+                             styleClass="ui-panelgrid-blank form-group">
+                    <p:outputLabel styleClass="req-mandatory" value="Nomor Identitas"/>
+                    <p:inputText value="#{treatmentMBean.pasien.nik}" 
+                                 maxlength="20" converter="upperCaseConverter" styleClass="capitalized"
+                                 required="true" requiredMessage="NIK harus terisi!"
+                                 onkeypress="return isNumberKey(event)">
+                        <f:validateRegex pattern="^[0-9]*$" />
+                    </p:inputText>
+                    <p:commandButton icon="fa fa-search"/>
+                </p:panelGrid>
+                <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8"
+                             style="width: 100%"
+                             styleClass="ui-panelgrid-blank form-group">
+                    <p:outputLabel styleClass="req-mandatory" value="Nama Lengkap"/>
+                    <p:inputText value="#{treatmentMBean.pasien.nama}" maxlength="80" 
+                                 converter="upperCaseConverter" styleClass="capitalized"
+                                 required="true" requiredMessage="Nama Lengkap harus terisi!"/>
+                    
+                    <p:outputLabel styleClass="req-mandatory" value="Jenis Kelamin"/>
+                    <p:selectOneMenu value="#{treatmentMBean.pasien.jenisKelamin}"
+                                     required="true" requiredMessage="Jenis Kelamin harus terisi!">
+                        <f:selectItem itemLabel="Pilih" itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="PRIA" itemValue="P"/>
+                        <f:selectItem itemLabel="WANITA" itemValue="W"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel styleClass="req-mandatory" value="Tanggal Lahir"/>
+                    <p:calendar value="#{treatmentMBean.pasien.tglLahir}" yearRange="c-100:c" 
+                                maxdate="now" pattern="dd-MM-yyyy" navigator="true"
+                                required="true" requiredMessage="Tanggal Lahir harus terisi!"/>
+                    
+                    <p:outputLabel styleClass="req-mandatory" value="Nomor Telepon"/>
+                    <p:inputText value="#{treatmentMBean.pasien.noHp}" maxlength="15" 
+                                 converter="upperCaseConverter" styleClass="capitalized"
+                                 required="true" requiredMessage="Nomor Telepon harus terisi!"/>
+                    
+                    <p:outputLabel styleClass="req-mandatory" value="Tipe Perawatan"/>
+                    <p:selectOneMenu value="#{treatmentMBean.tipePelayanan}"
+                                     converter="PickListConverter"
+                                     required="true" requiredMessage="Tipe Perawatan harus terisi!">
+                        <p:ajax listener="#{treatmentMBean.onChangeTipePelayanan()}" update="idTreatment"/>
+                        <f:selectItem itemLabel="Pilih" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{treatmentMBean.listTipePelayanan}" 
+                                       var="tipe" 
+                                       itemLabel="#{tipe.nama}"
+                                       itemValue="#{tipe.tipeId}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel styleClass="req-mandatory" value="Nama Perawatan"/>
+                    <p:selectOneMenu id="idTreatment" value="#{treatmentMBean.treatment}"
+                                     converter="PickListConverter"
+                                     required="true" requiredMessage="Nama Perawatan harus terisi!">
+                        <f:selectItem itemLabel="Pilih" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{treatmentMBean.listTreatment}" 
+                                       var="treatment" 
+                                       itemLabel="#{treatment.nama}"
+                                       itemValue="#{treatment.treatmentId}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                
+                <p:panelGrid columns="3" columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4"
+                             style="width: 100%"
+                             styleClass="ui-panelgrid-blank form-group">
+                    <p/>
+                    <p:commandButton icon="fa fa-save" value="Simpan" update="@form"/>
+                    <p/>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

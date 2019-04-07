@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="content">
+        <h:form id="idForm" prependId="false">
+            <p:panel style="overflow: auto" id="idPanel"
+                     class="card card-w-title ui-fluid no-border" header="Penjualan Obat">
+                <p:panelGrid columns="1" columnClasses="ui-grid-col-12"
+                             style="width: 100%; text-align: right;"
+                             styleClass="ui-panelgrid-blank form-group">
+                    <p:outputLabel value="* Wajib Diisi" style="color: red"/>
+                </p:panelGrid>
+                
+                <p:outputLabel value="" style="font-style: italic;"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

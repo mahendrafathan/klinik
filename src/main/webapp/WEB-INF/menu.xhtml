@@ -15,6 +15,10 @@
                         <div style="text-align: left">
                             <pu:menu>
                                 <p:menuitem value="Beranda" icon="fa fa-home" outcome="/index"/>
+                                <p:submenu label="Pelayanan" icon="fa fa-gears">
+                                    <p:menuitem value="Perawatan" icon="fa fa-bed" outcome="/service/treatment/main-action"/>
+                                    <p:menuitem value="Obat" icon="fa fa-medkit" outcome="/service/medicine/main-action"/>
+                                </p:submenu>
                             </pu:menu>
                         </div>
                     </p:panel>

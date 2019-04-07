@@ -12,39 +12,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
 /**
  *
- * @author Owner
+ * @author PROSIA
  */
 @Entity
-@Table(name = "treatment")
+@Table(name = "tipe_pelayanan")
 @Data
-public class Treatment implements Serializable {
-
+public class TipePelayanan implements Serializable {
+    
     @Id
     @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "treatment_id", nullable = false)
-    private Integer treatmentId;
-
-    @Column(name = "kode")
-    private String kode;
+    @Column(name = "tipe_id", nullable = false)
+    private Integer tipeId;
 
     @Column(name = "nama")
     private String nama;
-
-    @Column(name = "biaya")
-    private Integer biaya;
-
-    @Column(name = "deskripsi")
-    private String deskripsi;
     
-    @JoinColumn(name = "tipe_id", referencedColumnName = "tipe_id")
-    @ManyToOne
-    private TipePelayanan tipeId;
 }
